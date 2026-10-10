@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "image": "budi-portfolio-ai-ops:local-verification-20261010",
+  "image_id": "sha256:ff2060567183ef312ec629629126f6065c0278e327662ec3eb49ea8586230d4f",
+  "python": "Python 3.13.16",
+  "health": {
+    "status": "ok",
+    "provider": "offline",
+    "corpus_version": "b72327c012152c37",
+    "documents": 6,
+    "chunks": 30
+  },
+  "answer_mode": "offline_extractive",
+  "citation_count": 3,
+  "critical_negation_preserved": true,
+  "invalid_query_http_status": 422,
+  "html_status": 200,
+  "runtime_user_id": 10001,
+  "read_only_root": true,
+  "linux_capabilities": "ALL dropped",
+  "mcp_stdio": true,
+  "mcp_protocol": "2026-07-28",
+  "notes": "Local ephemeral container was stopped after verification. No public deployment."
+}

@@ -1,0 +1,54 @@
+name: Portfolio verification
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ai-assistant:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.13']
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: ai-ops-assistant
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install '.[test]'
+      - run: python -m pytest -q
+      - run: python -m ai_ops.evaluate
+      - run: python -m ai_ops.demo
+
+  warehouse:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: warehouse-dx
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '10'
+          run_install: false
+      - run: python -m pip install -r requirements-lock.txt
+      - run: python -m pytest backend/test_app.py -q
+      - run: pnpm install --frozen-lockfile
+        working-directory: warehouse-dx/frontend
+      - run: pnpm build
+        working-directory: warehouse-dx/frontend
+      - run: python backend/smoke_http.py

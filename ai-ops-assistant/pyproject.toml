@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools==82.0.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-ops-assistant-portfolio"
+version = "0.1.0"
+description = "A bilingual document-grounded operations assistant with a Python API and official MCP tools"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi==0.143.0",
+  "uvicorn==0.54.0",
+  "httpx==0.28.1",
+  "pydantic==2.14.0",
+  "mcp==2.3.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1", "pytest-asyncio==1.4.0"]
+
+[project.scripts]
+ai-ops-demo = "ai_ops.demo:main"
+ai-ops-mcp = "ai_ops.mcp_server:main"
+ai-ops-evaluate = "ai_ops.evaluate:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ai_ops = ["corpus/*.md", "web/*.html", "evaluation/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+

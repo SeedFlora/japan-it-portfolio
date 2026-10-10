@@ -1,0 +1,193 @@
+{
+  "demo_data": "Fictional operational policies; newly built portfolio project",
+  "offline_answers": [
+    {
+      "query": "When should we rollback a release?",
+      "retrieval": "bm25_words_cjk_ngrams",
+      "evidence": [
+        {
+          "chunk_id": "release_en:L7-7",
+          "document_id": "release_en",
+          "title": "Release and rollback playbook (fictional demo)",
+          "section": "Release preparation",
+          "language": "en",
+          "source_file": "corpus/release_en.md",
+          "line_start": 7,
+          "line_end": 7,
+          "document_sha256": "f4ffe3c8148fedcb1c46eefa6e13f8f7ab84c7778ab2215e8aabcb0047e4e034",
+          "quote": "Before a release, the release coordinator records the change ticket, tested build identifier, database migration plan, monitoring owner, and rollback owner. Staging smoke tests must pass. The coordinator asks a second engineer to review the checklist before approving the release.",
+          "score": 7.91435,
+          "query_coverage": 1.0
+        },
+        {
+          "chunk_id": "release_en:L16-16",
+          "document_id": "release_en",
+          "title": "Release and rollback playbook (fictional demo)",
+          "section": "Release communication",
+          "language": "en",
+          "source_file": "corpus/release_en.md",
+          "line_start": 16,
+          "line_end": 16,
+          "document_sha256": "f4ffe3c8148fedcb1c46eefa6e13f8f7ab84c7778ab2215e8aabcb0047e4e034",
+          "quote": "For a customer-facing release, the coordinator posts a start notice, a completion or rollback notice, and the monitoring result in the change ticket. The operations lead receives a daily summary of open releases. This demo assistant cannot approve releases or send notices.",
+          "score": 7.35099,
+          "query_coverage": 1.0
+        },
+        {
+          "chunk_id": "release_en:L10-10",
+          "document_id": "release_en",
+          "title": "Release and rollback playbook (fictional demo)",
+          "section": "Rollback decision",
+          "language": "en",
+          "source_file": "corpus/release_en.md",
+          "line_start": 10,
+          "line_end": 10,
+          "document_sha256": "f4ffe3c8148fedcb1c46eefa6e13f8f7ab84c7778ab2215e8aabcb0047e4e034",
+          "quote": "Rollback is considered when the error rate exceeds 2% for five consecutive minutes after a deployment, or when the order creation smoke test fails. The incident commander decides whether to rollback and records the reason in the incident ticket. A rollback is not automatically safe after an irreversible database migration; first consult the migration owner and use the recovery plan.",
+          "score": 3.61642,
+          "query_coverage": 0.5
+        }
+      ],
+      "corpus_version": "b72327c012152c37",
+      "status": "evidence_found",
+      "mode": "offline_extractive",
+      "answer": "Relevant source excerpts (review applicability; no independent conclusion):\n\n[1] Before a release, the release coordinator records the change ticket, tested build identifier, database migration plan, monitoring owner, and rollback owner. Staging smoke tests must pass. The coordinator asks a second engineer to review the checklist before approving the release.\nSource: corpus/release_en.md, Release preparation, lines 7–7\n\n[2] For a customer-facing release, the coordinator posts a start notice, a completion or rollback notice, and the monitoring result in the change ticket. The operations lead receives a daily summary of open releases. This demo assistant cannot approve releases or send notices.\nSource: corpus/release_en.md, Release communication, lines 16–16\n\n[3] Rollback is considered when the error rate exceeds 2% for five consecutive minutes after a deployment, or when the order creation smoke test fails. The incident commander decides whether to rollback and records the reason in the incident ticket. A rollback is not automatically safe after an irreversible database migration; first consult the migration owner and use the recovery plan.\nSource: corpus/release_en.md, Rollback decision, lines 10–10",
+      "warnings": []
+    },
+    {
+      "query": "重大障害のエスカレーションと復旧手順は？",
+      "retrieval": "bm25_words_cjk_ngrams",
+      "evidence": [
+        {
+          "chunk_id": "incident_ja:L7-7",
+          "document_id": "incident_ja",
+          "title": "障害対応ハンドブック（架空のデモ）",
+          "section": "重大度とエスカレーション",
+          "language": "ja",
+          "source_file": "corpus/incident_ja.md",
+          "line_start": 7,
+          "line_end": 7,
+          "document_sha256": "3af0b4294308fad70b755ae02f9fbdf8ab762d83d9ac560f88c2aac4c89563a8",
+          "quote": "注文を作成できない全面障害、または顧客データ漏えいの疑いはSEV1の重大障害です。当番エンジニアへ直ちに連絡します。10分以内に応答がなければ運用リーダーへエスカレーションします。運用リーダーが障害対応責任者と連絡担当者を指名します。",
+          "score": 50.94035,
+          "query_coverage": 0.51429
+        }
+      ],
+      "corpus_version": "b72327c012152c37",
+      "status": "evidence_found",
+      "mode": "offline_extractive",
+      "answer": "関連する原文の抜粋（適用条件を確認してください。独自の結論ではありません）:\n\n[1] 注文を作成できない全面障害、または顧客データ漏えいの疑いはSEV1の重大障害です。当番エンジニアへ直ちに連絡します。10分以内に応答がなければ運用リーダーへエスカレーションします。運用リーダーが障害対応責任者と連絡担当者を指名します。\nSource: corpus/incident_ja.md, 重大度とエスカレーション, lines 7–7",
+      "warnings": []
+    },
+    {
+      "query": "How are backup restore tests performed?",
+      "retrieval": "bm25_words_cjk_ngrams",
+      "evidence": [
+        {
+          "chunk_id": "data_en:L10-10",
+          "document_id": "data_en",
+          "title": "Data quality and backup handbook (fictional demo)",
+          "section": "Backup restore tests",
+          "language": "en",
+          "source_file": "corpus/data_en.md",
+          "line_start": 10,
+          "line_end": 10,
+          "document_sha256": "43dbe2820311210b36ed4d62a0da40407acbda5f8beb89977811d44ffe39f70a",
+          "quote": "Database backups run every night at 02:00 JST. The operations engineer performs a backup restore test in an isolated test environment once a month. Verify record counts and referential integrity, and record elapsed restore time in the backup ticket. Never restore a test backup over the live database.",
+          "score": 16.29052,
+          "query_coverage": 0.75
+        },
+        {
+          "chunk_id": "release_en:L7-7",
+          "document_id": "release_en",
+          "title": "Release and rollback playbook (fictional demo)",
+          "section": "Release preparation",
+          "language": "en",
+          "source_file": "corpus/release_en.md",
+          "line_start": 7,
+          "line_end": 7,
+          "document_sha256": "f4ffe3c8148fedcb1c46eefa6e13f8f7ab84c7778ab2215e8aabcb0047e4e034",
+          "quote": "Before a release, the release coordinator records the change ticket, tested build identifier, database migration plan, monitoring owner, and rollback owner. Staging smoke tests must pass. The coordinator asks a second engineer to review the checklist before approving the release.",
+          "score": 3.71453,
+          "query_coverage": 0.25
+        }
+      ],
+      "corpus_version": "b72327c012152c37",
+      "status": "evidence_found",
+      "mode": "offline_extractive",
+      "answer": "Relevant source excerpts (review applicability; no independent conclusion):\n\n[1] Database backups run every night at 02:00 JST. The operations engineer performs a backup restore test in an isolated test environment once a month. Verify record counts and referential integrity, and record elapsed restore time in the backup ticket. Never restore a test backup over the live database.\nSource: corpus/data_en.md, Backup restore tests, lines 10–10\n\n[2] Before a release, the release coordinator records the change ticket, tested build identifier, database migration plan, monitoring owner, and rollback owner. Staging smoke tests must pass. The coordinator asks a second engineer to review the checklist before approving the release.\nSource: corpus/release_en.md, Release preparation, lines 7–7",
+      "warnings": []
+    },
+    {
+      "query": "What is the orbital period of Neptune?",
+      "retrieval": "bm25_words_cjk_ngrams",
+      "evidence": [],
+      "corpus_version": "b72327c012152c37",
+      "status": "not_found",
+      "mode": "offline_extractive",
+      "answer": "No sufficiently matching evidence was found in the demo corpus.",
+      "warnings": []
+    }
+  ],
+  "mcp_stdio": {
+    "protocol_version": "2026-07-28",
+    "tools": [
+      "search_documents",
+      "answer_question",
+      "read_document"
+    ],
+    "answer": {
+      "query": "When should we rollback a release?",
+      "retrieval": "bm25_words_cjk_ngrams",
+      "evidence": [
+        {
+          "chunk_id": "release_en:L7-7",
+          "document_id": "release_en",
+          "title": "Release and rollback playbook (fictional demo)",
+          "section": "Release preparation",
+          "language": "en",
+          "source_file": "corpus/release_en.md",
+          "line_start": 7,
+          "line_end": 7,
+          "document_sha256": "f4ffe3c8148fedcb1c46eefa6e13f8f7ab84c7778ab2215e8aabcb0047e4e034",
+          "quote": "Before a release, the release coordinator records the change ticket, tested build identifier, database migration plan, monitoring owner, and rollback owner. Staging smoke tests must pass. The coordinator asks a second engineer to review the checklist before approving the release.",
+          "score": 7.91435,
+          "query_coverage": 1.0
+        },
+        {
+          "chunk_id": "release_en:L16-16",
+          "document_id": "release_en",
+          "title": "Release and rollback playbook (fictional demo)",
+          "section": "Release communication",
+          "language": "en",
+          "source_file": "corpus/release_en.md",
+          "line_start": 16,
+          "line_end": 16,
+          "document_sha256": "f4ffe3c8148fedcb1c46eefa6e13f8f7ab84c7778ab2215e8aabcb0047e4e034",
+          "quote": "For a customer-facing release, the coordinator posts a start notice, a completion or rollback notice, and the monitoring result in the change ticket. The operations lead receives a daily summary of open releases. This demo assistant cannot approve releases or send notices.",
+          "score": 7.35099,
+          "query_coverage": 1.0
+        },
+        {
+          "chunk_id": "release_en:L10-10",
+          "document_id": "release_en",
+          "title": "Release and rollback playbook (fictional demo)",
+          "section": "Rollback decision",
+          "language": "en",
+          "source_file": "corpus/release_en.md",
+          "line_start": 10,
+          "line_end": 10,
+          "document_sha256": "f4ffe3c8148fedcb1c46eefa6e13f8f7ab84c7778ab2215e8aabcb0047e4e034",
+          "quote": "Rollback is considered when the error rate exceeds 2% for five consecutive minutes after a deployment, or when the order creation smoke test fails. The incident commander decides whether to rollback and records the reason in the incident ticket. A rollback is not automatically safe after an irreversible database migration; first consult the migration owner and use the recovery plan.",
+          "score": 3.61642,
+          "query_coverage": 0.5
+        }
+      ],
+      "corpus_version": "b72327c012152c37",
+      "status": "evidence_found",
+      "mode": "offline_extractive",
+      "answer": "Relevant source excerpts (review applicability; no independent conclusion):\n\n[1] Before a release, the release coordinator records the change ticket, tested build identifier, database migration plan, monitoring owner, and rollback owner. Staging smoke tests must pass. The coordinator asks a second engineer to review the checklist before approving the release.\nSource: corpus/release_en.md, Release preparation, lines 7–7\n\n[2] For a customer-facing release, the coordinator posts a start notice, a completion or rollback notice, and the monitoring result in the change ticket. The operations lead receives a daily summary of open releases. This demo assistant cannot approve releases or send notices.\nSource: corpus/release_en.md, Release communication, lines 16–16\n\n[3] Rollback is considered when the error rate exceeds 2% for five consecutive minutes after a deployment, or when the order creation smoke test fails. The incident commander decides whether to rollback and records the reason in the incident ticket. A rollback is not automatically safe after an irreversible database migration; first consult the migration owner and use the recovery plan.\nSource: corpus/release_en.md, Rollback decision, lines 10–10",
+      "warnings": []
+    }
+  }
+}

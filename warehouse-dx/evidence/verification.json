@@ -1,0 +1,32 @@
+{
+  "project": "Warehouse DX",
+  "verified_on": "2026-10-10",
+  "scope": "Local synthetic-data portfolio verification; not a production deployment",
+  "python_tests": {
+    "command": "python -m pytest backend/test_app.py -q",
+    "passed": 22,
+    "status": "passed"
+  },
+  "frontend": {
+    "command": "pnpm build",
+    "status": "passed",
+    "type_check": "tsc --noEmit passed",
+    "production_bundle": "Vite build passed"
+  },
+  "http_smoke": {
+    "command": "python backend/smoke_http.py",
+    "status": "passed",
+    "server": "Real Uvicorn HTTP process, isolated temporary SQLite database",
+    "checks": ["Built HTML/JS/CSS assets", "Stock movement and retry", "Negative-stock rejection", "Approval and receipt", "Receipt retry", "Viewer restrictions", "CSV export"]
+  },
+  "meaningful_test_cases": [
+    "Twenty simultaneous dispatches from a balance of nine commit exactly nine movements and reject eleven; final stock is zero",
+    "Eight simultaneous identical movement retries commit once",
+    "Eight simultaneous approved-request receipts commit once",
+    "An injected audit-write failure rolls back stock and movement",
+    "An injected receipt audit failure rolls back request, stock and movement",
+    "Restarting the application preserves state without reseeding"
+  ],
+  "visual_browser_qa": "Not performed; frontend build and served asset checks do not establish visual layout quality",
+  "limitations": ["Demo role headers are not authentication", "No client/employer data", "No production deployment", "Creating a replenishment request is not idempotent"]
+}

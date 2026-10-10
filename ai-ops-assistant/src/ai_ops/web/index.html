@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hikari · AI Operations Assistant</title>
+  <style>
+    :root{color-scheme:light;--ink:#142632;--muted:#526674;--line:#d5e0e5;--paper:#f5f8fa;--teal:#007967}
+    *{box-sizing:border-box}body{font:16px/1.55 system-ui,-apple-system,sans-serif;margin:0;background:var(--paper);color:var(--ink)}
+    header{background:#142632;color:white;padding:20px max(24px,calc((100vw - 1040px)/2));display:flex;justify-content:space-between;align-items:center;gap:20px}
+    header strong{font-size:20px;letter-spacing:.02em}header span{font-size:13px;color:#bcdae0}main{max-width:1040px;margin:44px auto;padding:0 24px 50px}
+    .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--teal)}h1{font-size:clamp(30px,5vw,44px);line-height:1.15;margin:10px 0 18px;max-width:800px}
+    .intro{max-width:820px;color:var(--muted)}.panel{margin-top:28px;background:white;border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 8px 32px #13253108}
+    label{display:block;font-weight:650;margin:0 0 7px}textarea{width:100%;min-height:104px;resize:vertical;font:inherit;padding:14px;border:1px solid #aebfc8;border-radius:8px;color:var(--ink)}
+    textarea:focus,select:focus,button:focus{outline:3px solid #8ee0d4;outline-offset:2px}.actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px}
+    select,button{font:inherit;border:1px solid var(--line);border-radius:7px;padding:10px 14px}button{cursor:pointer;background:var(--teal);color:white;border-color:var(--teal);font-weight:650}button:disabled{opacity:.6;cursor:wait}
+    .examples{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.examples button{font-size:13px;background:#eef7f5;color:var(--teal);border-color:#c9e6df;padding:7px 11px}
+    #status{color:var(--muted);font-size:14px;min-height:24px;margin-top:18px}.result{padding:24px;border-top:1px solid var(--line)}.result:first-child{border-top:0}.result h3{margin:0 0 6px;font-size:18px}.meta{color:var(--muted);font-size:13px}blockquote{margin:18px 0;padding:0 0 0 18px;border-left:3px solid #99ccbf;white-space:pre-wrap;line-height:1.75}a{color:var(--teal)}code{font-size:12px;word-break:break-all}.empty{padding:24px;color:var(--muted)}.notice{font-size:13px;color:var(--muted);margin-top:20px}
+    #results{padding:0;overflow:hidden}#results[hidden]{display:none}footer{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:28px}@media(max-width:600px){header{align-items:flex-start;flex-direction:column;gap:5px}main{margin-top:28px}.panel{padding:18px}.result{padding:18px}}
+  </style>
+</head>
+<body>
+  <header><strong>HIKARI / Operations knowledge</strong><span>Python API · Grounded retrieval · MCP</span></header>
+  <main>
+    <div class="eyebrow">Bilingual portfolio demonstration / 日英対応</div>
+    <h1>Find operational evidence.<br>Trace every answer to its source.</h1>
+    <p class="intro">Ask about releases, incident response, data quality, or backups. This demonstration retrieves exact excerpts from six fictional English and Japanese playbooks. It shows source evidence for review, without approving operational decisions.</p>
+    <form id="query-form" class="panel">
+      <label for="query">Your question / 質問</label><textarea id="query" minlength="2" maxlength="500" required placeholder="When should we rollback a release?"></textarea>
+      <div class="actions"><div><label for="language">Source language</label><select id="language"><option value="all">English + 日本語</option><option value="en">English</option><option value="ja">日本語</option></select></div><button id="submit" type="submit">Find cited evidence →</button></div>
+      <div class="examples" aria-label="Example questions"><button type="button" data-question="When should we rollback a release?" data-language="en">Release rollback</button><button type="button" data-question="重大障害のエスカレーションと復旧手順は？" data-language="ja">障害対応</button><button type="button" data-question="How are backup restore tests performed?" data-language="en">Backup restore</button></div>
+      <div id="status" role="status" aria-live="polite">Loading local corpus status…</div>
+    </form>
+    <section class="panel" id="results" aria-label="Retrieved source evidence" hidden></section>
+    <p class="notice">Offline mode uses deterministic BM25 retrieval and exact source excerpts. Optional local Ollama may select complete paragraphs; modified or fabricated quotes are rejected. A matching excerpt does not prove that it fully answers the question.</p>
+    <footer><a href="/docs">Interactive API documentation</a><a href="/api/documents">Corpus catalog</a><span>Newly built demonstration · fictional data · no production credentials</span></footer>
+  </main>
+  <script>
+    const form=document.querySelector('#query-form'), query=document.querySelector('#query'), language=document.querySelector('#language'), status=document.querySelector('#status'), results=document.querySelector('#results'), submit=document.querySelector('#submit');
+    document.querySelectorAll('[data-question]').forEach(button=>button.addEventListener('click',()=>{query.value=button.dataset.question;language.value=button.dataset.language;query.focus();}));
+    fetch('/health').then(r=>r.json()).then(data=>{status.textContent=`${data.documents} documents · ${data.chunks} source paragraphs · ${data.provider} mode · corpus ${data.corpus_version}`;}).catch(()=>{status.textContent='Local API unavailable.';});
+    form.addEventListener('submit',async event=>{event.preventDefault();submit.disabled=true;status.textContent='Retrieving source evidence…';results.hidden=true;results.replaceChildren();try{const response=await fetch('/api/answer',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:query.value,language:language.value,limit:3})});if(!response.ok)throw new Error('Question validation failed. Use 2–500 characters and a supported language.');const data=await response.json();status.textContent=`${data.evidence.length} excerpt(s) · ${data.mode} · corpus ${data.corpus_version}`;if(data.warnings.length)status.textContent+=' · '+data.warnings.join(' ');if(!data.evidence.length){const p=document.createElement('p');p.className='empty';p.textContent=data.answer;results.append(p);}data.evidence.forEach((evidence,index)=>{const article=document.createElement('article');article.className='result';const heading=document.createElement('h3');heading.textContent=`[${index+1}] ${evidence.section}`;const metadata=document.createElement('div');metadata.className='meta';metadata.textContent=`${evidence.title} · ${evidence.language.toUpperCase()} · lines ${evidence.line_start}–${evidence.line_end}`;const quote=document.createElement('blockquote');quote.textContent=evidence.quote;const link=document.createElement('a');link.href='/api/documents/'+encodeURIComponent(evidence.document_id);link.target='_blank';link.rel='noopener';link.textContent='Read source document →';const version=document.createElement('div');version.className='meta';version.textContent=`${evidence.source_file} · source SHA-256 ${evidence.document_sha256.slice(0,12)}… · score ${evidence.score}`;article.append(heading,metadata,quote,link,version);results.append(article);});results.hidden=false;}catch(error){status.textContent=error.message;}finally{submit.disabled=false;}});
+  </script>
+</body>
+</html>
+

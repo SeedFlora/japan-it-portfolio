@@ -1,0 +1,39 @@
+# Local environments and dependency/build output
+.venv/
+venv/
+node_modules/
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+*.tsbuildinfo
+
+# Local data and credentials
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+data/
+*.log
+*.pem
+*.key
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local-only diagnostics
+test-results/
+playwright-report/

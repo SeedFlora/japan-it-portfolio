@@ -1,0 +1,278 @@
+{
+  "scope": "Hand-authored synthetic fixture; same six demo documents; not a held-out or production benchmark",
+  "retrieval": "bm25_words_cjk_ngrams",
+  "corpus_version": "b72327c012152c37",
+  "documents": 6,
+  "chunks": 30,
+  "positive_cases": 20,
+  "negative_cases": 6,
+  "metrics": {
+    "document_recall_at_1": 1.0,
+    "section_recall_at_1": 0.95,
+    "section_recall_at_3": 1.0,
+    "section_mrr_at_3": 0.96667,
+    "negative_abstention_rate": 1.0
+  },
+  "cases": [
+    {
+      "query": "When should we rollback a release?",
+      "language": "en",
+      "expected_document": "release_en",
+      "expected_section": "Rollback decision",
+      "actual_top_document": "release_en",
+      "actual_top_section": "Release preparation",
+      "expected_section_rank": 3,
+      "returned_count": 3
+    },
+    {
+      "query": "What needs review before approving release preparation?",
+      "language": "en",
+      "expected_document": "release_en",
+      "expected_section": "Release preparation",
+      "actual_top_document": "release_en",
+      "actual_top_section": "Release preparation",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "Is rollback safe after an irreversible database migration?",
+      "language": "en",
+      "expected_document": "release_en",
+      "expected_section": "Rollback decision",
+      "actual_top_document": "release_en",
+      "actual_top_section": "Rollback decision",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "What are the incident severity escalation rules?",
+      "language": "en",
+      "expected_document": "incident_en",
+      "expected_section": "Severity and escalation",
+      "actual_top_document": "incident_en",
+      "actual_top_section": "Severity and escalation",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "Who records internal incident status updates and how often?",
+      "language": "en",
+      "expected_document": "incident_en",
+      "expected_section": "Incident updates",
+      "actual_top_document": "incident_en",
+      "actual_top_section": "Incident updates",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "What belongs in the post-incident review?",
+      "language": "en",
+      "expected_document": "incident_en",
+      "expected_section": "Post-incident review",
+      "actual_top_document": "incident_en",
+      "actual_top_section": "Post-incident review",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "What data quality checks quarantine invalid rows?",
+      "language": "en",
+      "expected_document": "data_en",
+      "expected_section": "Data quality checks",
+      "actual_top_document": "data_en",
+      "actual_top_section": "Data quality checks",
+      "expected_section_rank": 1,
+      "returned_count": 1
+    },
+    {
+      "query": "When are backup restore tests performed?",
+      "language": "en",
+      "expected_document": "data_en",
+      "expected_section": "Backup restore tests",
+      "actual_top_document": "data_en",
+      "actual_top_section": "Backup restore tests",
+      "expected_section_rank": 1,
+      "returned_count": 2
+    },
+    {
+      "query": "What is the log retention period?",
+      "language": "en",
+      "expected_document": "data_en",
+      "expected_section": "Access and retention",
+      "actual_top_document": "data_en",
+      "actual_top_section": "Access and retention",
+      "expected_section_rank": 1,
+      "returned_count": 1
+    },
+    {
+      "query": "What should the weekly operations dashboard report?",
+      "language": "en",
+      "expected_document": "data_en",
+      "expected_section": "Reporting and improvement",
+      "actual_top_document": "data_en",
+      "actual_top_section": "Reporting and improvement",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "ロールバックを判断する条件は？",
+      "language": "ja",
+      "expected_document": "release_ja",
+      "expected_section": "ロールバックの判断",
+      "actual_top_document": "release_ja",
+      "actual_top_section": "ロールバックの判断",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "リリース準備で記録する項目は？",
+      "language": "ja",
+      "expected_document": "release_ja",
+      "expected_section": "リリース準備",
+      "actual_top_document": "release_ja",
+      "actual_top_section": "リリース準備",
+      "expected_section_rank": 1,
+      "returned_count": 2
+    },
+    {
+      "query": "不可逆のデータベース移行後はロールバックが安全ですか？",
+      "language": "ja",
+      "expected_document": "release_ja",
+      "expected_section": "ロールバックの判断",
+      "actual_top_document": "release_ja",
+      "actual_top_section": "ロールバックの判断",
+      "expected_section_rank": 1,
+      "returned_count": 3
+    },
+    {
+      "query": "重大障害のエスカレーション手順は？",
+      "language": "ja",
+      "expected_document": "incident_ja",
+      "expected_section": "重大度とエスカレーション",
+      "actual_top_document": "incident_ja",
+      "actual_top_section": "重大度とエスカレーション",
+      "expected_section_rank": 1,
+      "returned_count": 1
+    },
+    {
+      "query": "重大障害では何分ごとに社内へ報告しますか？",
+      "language": "ja",
+      "expected_document": "incident_ja",
+      "expected_section": "障害中の連絡",
+      "actual_top_document": "incident_ja",
+      "actual_top_section": "障害中の連絡",
+      "expected_section_rank": 1,
+      "returned_count": 2
+    },
+    {
+      "query": "障害後の振り返りの期限は？",
+      "language": "ja",
+      "expected_document": "incident_ja",
+      "expected_section": "障害後の振り返り",
+      "actual_top_document": "incident_ja",
+      "actual_top_section": "障害後の振り返り",
+      "expected_section_rank": 1,
+      "returned_count": 1
+    },
+    {
+      "query": "データ品質の確認では不正な行をどう扱いますか？",
+      "language": "ja",
+      "expected_document": "data_ja",
+      "expected_section": "データ品質の確認",
+      "actual_top_document": "data_ja",
+      "actual_top_section": "データ品質の確認",
+      "expected_section_rank": 1,
+      "returned_count": 1
+    },
+    {
+      "query": "バックアップ復元テストの頻度は？",
+      "language": "ja",
+      "expected_document": "data_ja",
+      "expected_section": "バックアップ復元テスト",
+      "actual_top_document": "data_ja",
+      "actual_top_section": "バックアップ復元テスト",
+      "expected_section_rank": 1,
+      "returned_count": 2
+    },
+    {
+      "query": "アプリケーションログの保存期間は？",
+      "language": "ja",
+      "expected_document": "data_ja",
+      "expected_section": "アクセスと保存期間",
+      "actual_top_document": "data_ja",
+      "actual_top_section": "アクセスと保存期間",
+      "expected_section_rank": 1,
+      "returned_count": 1
+    },
+    {
+      "query": "週次の運用ダッシュボードの報告項目は？",
+      "language": "ja",
+      "expected_document": "data_ja",
+      "expected_section": "報告と改善",
+      "actual_top_document": "data_ja",
+      "actual_top_section": "報告と改善",
+      "expected_section_rank": 1,
+      "returned_count": 1
+    },
+    {
+      "query": "What is the orbital period of Neptune?",
+      "language": "all",
+      "expected_document": null,
+      "expected_section": null,
+      "actual_top_document": null,
+      "actual_top_section": null,
+      "expected_section_rank": null,
+      "returned_count": 0
+    },
+    {
+      "query": "How tall is Mount Fuji?",
+      "language": "all",
+      "expected_document": null,
+      "expected_section": null,
+      "actual_top_document": null,
+      "actual_top_section": null,
+      "expected_section_rank": null,
+      "returned_count": 0
+    },
+    {
+      "query": "How do I bake a chocolate cake?",
+      "language": "all",
+      "expected_document": null,
+      "expected_section": null,
+      "actual_top_document": null,
+      "actual_top_section": null,
+      "expected_section_rank": null,
+      "returned_count": 0
+    },
+    {
+      "query": "富士山の標高は？",
+      "language": "ja",
+      "expected_document": null,
+      "expected_section": null,
+      "actual_top_document": null,
+      "actual_top_section": null,
+      "expected_section_rank": null,
+      "returned_count": 0
+    },
+    {
+      "query": "海王星の公転周期は？",
+      "language": "ja",
+      "expected_document": null,
+      "expected_section": null,
+      "actual_top_document": null,
+      "actual_top_section": null,
+      "expected_section_rank": null,
+      "returned_count": 0
+    },
+    {
+      "query": "チョコレートケーキのレシピは？",
+      "language": "ja",
+      "expected_document": null,
+      "expected_section": null,
+      "actual_top_document": null,
+      "actual_top_section": null,
+      "expected_section_rank": null,
+      "returned_count": 0
+    }
+  ]
+}
